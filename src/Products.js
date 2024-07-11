@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
 const electSchema = new Schema({
     codigo: Number,
     nombre: String,
-    precio: Number, 
-    categoria: [String]
+    precio: Number,
+    categorias: [String],
 })
 
 const Dispositivo = mongoose.model('Dispositivo', electSchema)

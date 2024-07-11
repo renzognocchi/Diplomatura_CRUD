@@ -1,11 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const app = express()
 process.loadEnvFile()
 const PORT = process.env.PORT ?? 3000
 const morgan = require('morgan')
 const DbConection = require('./src/Database.js')
 const Dispositivo = require('./src/Products.js')
+const app = express()
 
 DbConection()
 //middleware para parsear el JSON 
@@ -20,8 +20,8 @@ app.get("/", (req,res) => {
 //obtencion de todas los dispositivos electronicos
 app.get('/electronicos', async (req,res) => {
     try {
-        const dispositivo = await Dispositivo.find()
-        return res.json(dispositivo)
+        const Dispositivos = await Dispositivo.find()
+        return res.json(Dispositivos)
     } catch (error) {
         res.status(500)
            .send('error del servidor') 

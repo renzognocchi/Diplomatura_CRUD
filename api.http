@@ -5,7 +5,7 @@ GET http://localhost:3008
 GET http://localhost:3008/electronicos
 
 #### GET para obtenet dispositivo por id  
-GET http://localhost:3008/electronicos/
+GET http://localhost:3008/electronicos/:id
 
 #### GET para obtenet dispositivo por nombre
 GET http://localhost:3008/electronicos/nombre/heladera
@@ -14,8 +14,8 @@ GET http://localhost:3008/electronicos/nombre/heladera
 POST http://localhost:3008/electronicos
 
 #### PATCH para modificar un dispositivo
-PATCH http://localhost:3008/electronicos/:id
+PATCH http://localhost:3008/electronicos/
 
 #### DELETE para borrar un dispositivo
-DELETE http://localhost:3008/electronicos/668fe3a5978a595530d343d9
+DELETE http://localhost:3008/electronicos/6690212c8974f3a03d60874f
 
