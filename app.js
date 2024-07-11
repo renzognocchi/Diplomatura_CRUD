@@ -55,7 +55,7 @@ app.get('/electronicos/nombre/:nombre', async (req,res) => {
     }}
     catch (error) { 
         res.status(500)
-           .json('error del servidor')
+           .json('error al encontrar los dispostivos')
     }
 } )
   
