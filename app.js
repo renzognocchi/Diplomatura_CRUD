@@ -4,8 +4,10 @@ process.loadEnvFile()
 const PORT = process.env.PORT ?? 3000
 const morgan = require('morgan')
 const DbConection = require('./src/Database.js')
-const Dispositivo = require('./src/Products.js')
+const Dispositivo = require('./src/Product.js')
 const app = express()
+const Service = require("./src/service.js")
+
 
 DbConection()
 //middleware para parsear el JSON 
@@ -20,8 +22,8 @@ app.get("/", (req,res) => {
 //obtencion de todas los dispositivos electronicos
 app.get('/electronicos', async (req,res) => {
     try {
-        const Dispositivos = await Dispositivo.find()
-        return res.json(Dispositivos)
+        const dispositivo = await Dispositivo.find()
+        return res.json(dispositivo)
     } catch (error) {
         res.status(500)
            .send('error del servidor') 
@@ -59,20 +61,11 @@ app.get('/electronicos/nombre/:nombre', async (req,res) => {
     }
 } )
   
-//obtencion de un dispositivo por el nombre by query
-// app.get('/electronicos', async (req,res) => {
-//     const { nombre } = req.query
-//     const query = nombre ? { nombre: {$regex: nombre, $options: 'i' }} : {}
-//         try{
-//             const electronico = await Electronicos.find(query)
-//         } catch (error) {
-//             res.status(500).send('error al encontrar los dispositivos')
-//         }})
-        
-
-// creacion de un nuevo producto
+// // creacion de un nuevo producto
 app.post('/electronicos', async (req,res) => {
-    const nuevoElectronico = new Dispositivo(req.body)
+    let { body : newDispositivo } = req
+    nuevo = Service.createDispositivo(newDispositivo)
+    const nuevoElectronico = new Dispositivo(nuevo)
     try{
         await nuevoElectronico.save()
         res.status(201)
@@ -82,6 +75,7 @@ app.post('/electronicos', async (req,res) => {
                   .json({ message: 'error al crear los dispositivos'})
     }
 })
+
 
 //Actualizar un nuevo producto parcialmente 
 app.patch('/electronicos/:id', async (req,res) => {

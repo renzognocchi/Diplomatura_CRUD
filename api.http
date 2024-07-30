@@ -5,17 +5,29 @@ GET http://localhost:3008
 GET http://localhost:3008/electronicos
 
 #### GET para obtenet dispositivo por id  
-GET http://localhost:3008/electronicos/:id
+GET http://localhost:3008/electronicos/
 
 #### GET para obtenet dispositivo por nombre
 GET http://localhost:3008/electronicos/nombre/heladera
 
 #### POST para agregar un nuevo dispositivo
 POST http://localhost:3008/electronicos
+ Content-Type: application/json
+ 
+{ 
+  "categorias": ["Electrónica"],
+  "nombre": "parlante",
+  "precio": 230
+}
 
 #### PATCH para modificar un dispositivo
-PATCH http://localhost:3008/electronicos/
+PATCH http://localhost:3008/electronicos/66a928ad4926c3b9e28b268d
+ Content-Type: application/json
+
+{
+  "precio" :"520"
+}
 
 #### DELETE para borrar un dispositivo
-DELETE http://localhost:3008/electronicos/6690212c8974f3a03d60874f
+DELETE http://localhost:3008/electronicos/66a92be15b8500c6b263d0e7
 
